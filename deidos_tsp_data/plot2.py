@@ -4,7 +4,7 @@ def delta(xs):
 
 if __name__ == '__main__':
 
-    import tour
+    import tour2 as tour
 
     import matplotlib.pyplot as plt
 
@@ -16,4 +16,4 @@ if __name__ == '__main__':
     plt.title('ds : {}'.format(ds))
     plt.plot(xs, ys, 'ro')
     plt.plot(xs, ys, 'k-')
-    plt.savefig('tsp.png')
+    plt.savefig('tsp2.png')
