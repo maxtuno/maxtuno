@@ -29,7 +29,7 @@ if __name__ == '__main__':
 
     plt.figure(figsize=(40, 40))
     plt.axis('off')
-    plt.title('H ALGORITHM\nhttp://twitter.com/maxtuno\nTour Length (Standard Euclidean with Floats) = {}'.format(delta(xy)))
+    plt.title('Concorde\nhttp://twitter.com/maxtuno\nTour Length (Standard Euclidean with Floats) = {}'.format(delta(xy)))
     plt.gca().invert_yaxis()
     plt.plot(xs, ys, 'ko', alpha=0.5)
     plt.plot(xs, ys, 'k-', alpha=0.5)
