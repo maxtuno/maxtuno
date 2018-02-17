@@ -1,3 +1,4 @@
+experiment: http://www.math.uwaterloo.ca/tsp/vlsi/xrb14233.log.html
 video: https://youtu.be/EMsDxBrwlpk
 
 IA: 
