@@ -10,3 +10,5 @@ subset
 complement
 
 sum(subset) + sum(complement) = sum(universe)
+
+(only upload some solutions, are many...)
