@@ -1,0 +1,36 @@
+The only limitation for this version (community) is that the sum of the universe must be 32 bits, is an arbitrary restriction but prevents me from being given as a box on the server hahaha ... as is public ...
+
+I'm still working ... okas ?, if he dies suddenly that's why ...
+
+to run the script maybe you have to install
+requests
+
+run a one console => pip3 install requests
+
+-------------------
+
+import json
+import requests
+import random
+
+if __name__ == '__main__':
+url = 'https://peqnp-api.appspot.com/algorithm/ssp'
+
+bits = 23
+size = 1000
+limit = 2
+
+universe = sorted([random.randint(1, 2 ** bits) for _ in range(size)])
+target = sum(random.sample(universe, k=len(universe) // 2))
+
+print('Universe : {}'.format(universe))
+print('Target : {}'.format(target))
+
+subsets = requests.post(url, json=json.loads(json.dumps({'universe': universe, 'target': target, 'limit': limit}))).json()
+
+print('\n{}'.format(subsets['message']))
+
+for subset in subsets['subsets']:
+print()
+print('Is valid? : {}'.format(sum(subset) == target))
+print('Subset : {}'.format(subset))
