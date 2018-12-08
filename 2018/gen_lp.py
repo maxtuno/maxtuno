@@ -1,5 +1,5 @@
 """
-Author - Oscar Riveros http://www.peqnp.science
+Author - Oscar Riveros http://www.peqnp.science https://twitter.com/maxtuno/status/1071541574398590979
 This Particular Code is in Public Domain
 Generate Random Instances Of Mixed Integer Programmin for http://lpsolve.sourceforge.net/5.5/ 
 (can convert with lp_solve on mps see help)
