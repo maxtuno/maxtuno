@@ -8,8 +8,8 @@
 ///////////////////////////////////////////////////////////////////////////////
 */
 
-#ifndef SAT_SOLVER_H
-#define SAT_SOLVER_H
+#ifndef WMAXSAT_HESS_H
+#define WMAXSAT_HESS_H
 
 #include <stdio.h>
 #include <stdlib.h>
