@@ -1,5 +1,5 @@
 """
-copyright (b) 2012-2018 Oscar Riveros. all rights reserved. oscar.riveros@peqnp.science
+copyright (c) 2012-2018 Oscar Riveros. all rights reserved. oscar.riveros@peqnp.science
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
