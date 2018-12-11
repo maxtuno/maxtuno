@@ -8,8 +8,8 @@
 ///////////////////////////////////////////////////////////////////////////////
 */
 
-#ifndef SAT_SOLVER_H
-#define SAT_SOLVER_H
+#ifndef WMAXSAT_HESS_H
+#define WMAXSAT_HESS_H
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -118,6 +118,7 @@ void finalize(const char *file_name, struct cpu *cpu) {
 
 void dump(struct cpu *cpu) {
     save_state(cpu);
+    /*
     printf("c www.peqnp.science\n");
     printf("c Hyper Exponential Space Sorting by Oscar Riveros mailto:contact@peqnp.science\n");
     printf("p cnf %lu %lu\n", cpu->n_variables, cpu->n_clauses);
@@ -132,6 +133,7 @@ void dump(struct cpu *cpu) {
         }
         printf("0\n");
     }
+     */
     printf("c \n");
     printf("c Assignment Score <%lf | %lf>\n",  cpu->local, cpu->n_clauses - cpu->local);
     printf("c \n");
