@@ -4,3 +4,6 @@ usage: validator instance.wcnf model
 
 Note: model format (file)
 1 2 3 4 5 6 ... 0 (0 at end is mandotary)
+
+compile:
+gcc|clang|icc|pgcc -std=c89 validator.c -o validator
