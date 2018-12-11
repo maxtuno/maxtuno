@@ -342,7 +342,7 @@ def extract_variables(formula):
 def write_cnf_clauses_to_dimacs(clauses):
     output = ''
     for clause in clauses:
-        s = '{} '.format(random.choice([random.random(), math.log(n)]))
+        s = '{} '.format(random.choice([random.random(), 1 << n]))
         t = clause[0]
 
         if t in ['&', 'V']:
@@ -539,7 +539,7 @@ def generate_instance(NUM_CLAUSES, NUM_VARIABLES, LIT_PER_CLAUSE, op_3cnf):
     num_variables = postfix_counter
 
     output = '' # ''c A SAT instance generated from a ' + str(LIT_PER_CLAUSE) + '-CNF formula that had ' + str(NUM_CLAUSES) + ' clauses and ' + str(NUM_VARIABLES) + ' variables\n'
-    output += 'p wcnf ' + str(num_variables) + ' ' + str(num_clauses) + ' {}\n'.format(math.log(n))
+    output += 'p wcnf ' + str(num_variables) + ' ' + str(num_clauses) + ' {}\n'.format(1 << n)
     output += write_cnf_clauses_to_dimacs(formula)
     return output
 
@@ -549,7 +549,7 @@ def main():
     args = sys.argv
 
     if len(args) != 4:
-        print('Usage: python3 random_w3sat.py <number_of_variables> <number_of_clauses> <output_file>')
+        print('Usage: python3 random_w3sat.py <number_of_variables> <output_file>')
         return
 
     k = 3
