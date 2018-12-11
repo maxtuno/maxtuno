@@ -25,7 +25,7 @@
 # for ToughSat Project
 
 # modified by Oscar Riveros (https://twitter.com/maxtuno) to generate random real valued 3-MaxSAT instances
-# python3 random_w3sat.py <number_of_variables> <number_of_clauses> <output_file>
+# python3 random_w3sat.py <number_of_variables> <number_of_clauses> <k-literals per clause> <output_file>
 
 
 import math
@@ -549,13 +549,13 @@ def main():
     args = sys.argv
 
     if len(args) != 4:
-        print('Usage: python3 random_w3sat.py <number_of_variables> <output_file>')
+        print('Usage: python3 random_real_valued_w3sat.py <number_of_variables> <k-literals per clause> <output_file>')
         return
 
-    k = 3
+    k = int(args[2])
     numvars = int(args[1])
-    numclauses = round(int(args[2]))
-    op_3cnf = '0' # = args[4] == '1'
+    numclauses = round(4.267 * int(args[1]))
+    op_3cnf = False
 
     output = generate_instance(numclauses, numvars, k, op_3cnf)
 
