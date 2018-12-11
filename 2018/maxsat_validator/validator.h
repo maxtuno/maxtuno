@@ -13,8 +13,10 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
+/* #include <stdbool.h> */
 #include <string.h>
+
+typedef int bool; /* for support old and hand made compilers */
 
 struct variable {
     unsigned long id;
@@ -135,7 +137,7 @@ void dump(struct cpu *cpu) {
     }
      */
     printf("c \n");
-    printf("c Assignment Score <%lf | %lf>\n",  cpu->local, cpu->n_clauses - cpu->local);
+    printf("c Assignment Score <%lf | %lf>\n",  cpu->local, cpu->max_sat - cpu->local);
     printf("c \n");
     load_state(cpu);
 }
