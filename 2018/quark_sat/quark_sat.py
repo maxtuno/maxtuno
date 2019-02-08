@@ -21,19 +21,46 @@ SOFTWARE.
 """
 
 
-def exist_conflict(trail):
+import sys
+
+
+def apply_decide():
+    assert_literal(select_literal())
+
+
+def assert_literal(lit):
+    trail.append(lit)
+
+
+def literals_to_variables(lts):
+    return map(abs, lts)
+
+
+def invert_literal(lit):
+    return -lit
+
+
+def invert_clause(cls):
+    return set([invert_literal(lit) for lit in cls])
+
+
+def select_literal():
+    return variables.difference(literals_to_variables(trail)).pop()
+
+
+def no_exist_conflict():
     for cls in cnf:
-        if set(-lit for lit in cls) < set(trail):
-            return False
-    return True
+        if invert_clause(cls) < set(trail):
+            return True
+    return False
 
 
-def backtrack(trail):
+def apply_backtrack():
     while trail:
         lit = trail.pop()
         if lit not in taboo:
-            taboo.append(-lit)
-            trail.append(-lit)
+            taboo.append(invert_literal(lit))
+            assert_literal(invert_literal(lit))
             return True
         else:
             taboo.remove(lit)
@@ -41,48 +68,53 @@ def backtrack(trail):
 
 
 def dpll():
-    trail = []
     while True:
-        if not exist_conflict(trail):
+        if no_exist_conflict():
             if not trail:
-                return []
+                return False
             else:
-                if not backtrack(trail):
-                    return []
+                if not apply_backtrack():
+                    return False
         else:
             if len(trail) == n:
-                return trail
+                return True
             else:
-                trail.append(variables.difference(map(abs, trail)).pop())
+                apply_decide()
 
 
-def save_sat(model):
-    with open(sys.argv[1][:sys.argv[1].index('.')] + '.mod', 'w') as mod_file:
-        print('SAT', file=mod_file)
-        print(' '.join(list(map(str, sorted(model, key=abs)))) + ' 0', file=mod_file)
+def validate():
+    for cls in cnf:
+        sat = False
+        for lit in cls:
+            sat |= lit in trail
+            if sat:
+                break
+        if not sat:
+            return False
+    return True
+
+
+def save_sat():
+    if validate():
+        with open(sys.argv[1][:sys.argv[1].index('.')] + '.model', 'w') as model:
+            print('SAT', file=model)
+            print(' '.join(list(map(str, sorted(trail, key=abs)))) + ' 0', file=model)
 
 
 if __name__ == '__main__':
-
-    import sys
-
     n, m, cnf = 0, 0, []
     with open(sys.argv[1], 'r') as cnf_file:
         lines = cnf_file.readlines()
         for line in filter(lambda x: not x.startswith('c'), lines):
-            if line.startswith('0') or line.startswith('%'):
-                break
             if line.startswith('p cnf'):
                 n, m = list(map(int, line[6:].split(' ')))
             else:
                 cnf.append(list(map(int, line.rstrip('\n')[:-2].split(' '))))
 
-    variables, taboo = set(range(1, n + 1)), []
+    variables, trail, taboo = set(range(1, n + 1)), [], []
 
-    mod = dpll()
-
-    if mod:
+    if dpll():
         print('SAT')
-        save_sat(mod)
+        save_sat()
     else:
         print('UNSAT')
