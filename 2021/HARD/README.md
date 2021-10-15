@@ -1,6 +1,6 @@
 # VERY HARD AND SMALL INSTANCE FOR ALL MIP SOLVERS
 
-Testes with gurobi, LP Solve, GLPK
+Tested with gurobi, LP Solve, GLPK
 
 Guroby Result:
 
